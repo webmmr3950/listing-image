@@ -3,7 +3,18 @@
 import vision from '@google-cloud/vision';
 import { ExtractedText } from './types';
 
-const client = new vision.ImageAnnotatorClient();
+// const client = new vision.ImageAnnotatorClient();
+const client = process.env.VERCEL || process.env.NODE_ENV === 'production' ?
+  // Production: use environment variables
+  new vision.ImageAnnotatorClient({
+    projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    credentials: {
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    }
+  }) :
+  // Local development: use credentials file
+  new vision.ImageAnnotatorClient();
 
 export async function extractTextWithEnhancedVision(imageBuffer: Buffer): Promise<ExtractedText> {
   try {
