@@ -47,7 +47,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative">
+    <div className="min-h-screen flex items-center justify-center relative">
       <Image 
         src="/background.png" 
         alt="Background" 
@@ -56,18 +56,18 @@ const FileUpload: React.FC<FileUploadProps> = ({
         priority
       />
       
-      <Card className="w-full max-w-2xl bg-white/95 backdrop-blur-lg border-0 shadow-2xl relative z-10">
+      <Card className="w-full max-w-2xl bg-white/95 backdrop-blur-lg border-0 shadow-2xl relative z-10 py-8">
         <CardHeader className="text-center pb-6">
          
-          <CardTitle className="text-3xl font-bold text-gray-900 mb-3">
+          <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
             Business Listing Generator
           </CardTitle>
-          <p className="text-gray-600 text-md leading-relaxed">
+          <p className="text-gray-600">
             Upload a business image and we will automatically generate a complete listing with details from Google Places and web search
           </p>
         </CardHeader>
         
-        <CardContent className="space-y-8 px-8 pb-8">
+        <CardContent className="space-y-8 px-8">
           {error && (
             <Alert variant="destructive" className="border-red-200 bg-red-50">
               <AlertCircle className="h-4 w-4" />
@@ -117,12 +117,15 @@ const FileUpload: React.FC<FileUploadProps> = ({
               </div>
             ) : (
               <label htmlFor="file-upload" className="cursor-pointer block">
-                <Upload className="w-16 h-16 text-gray-400 mx-auto mb-6" />
-                <p className="text-2xl font-semibold text-gray-700 mb-3">
+                <Upload className="w-10 h-10 text-gray-400 mx-auto mb-6" />
+                <p className="text-xl font-semibold text-gray-700 mb-3">
                   Drop your business image here
                 </p>
-                <p className="text-lg text-gray-500 mb-6">
+                <p className="text-gray-500 mb-3">
                   or click to browse (PNG, JPG, WEBP up to 5MB)
+                </p>
+                <p className="text-gray-600 italic">
+                  * Please upload a clear image for better result! *
                 </p>
                 
               </label>
@@ -132,7 +135,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
           <Button
             onClick={onProcess}
             disabled={!selectedFile}
-            className="w-full py-6 text-xl font-semibold bg-black hover:bg-gray-800 disabled:bg-gray-400 disabled:text-gray-600 transition-all duration-300 transform hover:scale-[1.02]"
+            className="w-full py-6 text-lg font-semibold bg-black hover:bg-gray-800 disabled:bg-gray-400 disabled:text-gray-600 transition-all duration-300 transform hover:scale-[1.02]"
             size="lg"
           >
             Generate Business Listing
